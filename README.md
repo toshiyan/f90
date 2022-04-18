@@ -1,6 +1,6 @@
-# CmbRecTool
+# Fortran sources
 
-The Library has been written by Fortran90 to reconstruct lensing potential, cosmic bi-refrimgence, and patchy reionization from cosmic microwave background anisotropies (CMB) in full and flat sky. The Library also includes subrotuines for delensing, bi-spectrum calculation, and so on. Installing this library at NERSC is straightforward, but the library also works at other environment. 
+The Fortran library was written to reconstruct lensing potential, cosmic bi-refrimgence, and patchy reionization from cosmic microwave background anisotropies (CMB) in full and flat sky. The Library also includes subrotuines for delensing and bi-spectrum calculation. Installing this library at NERSC is straightforward, but the library also works at other environment. 
 
 Python modules are also available at https://github.com/toshiyan/cmblensplus
 
