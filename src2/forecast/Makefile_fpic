@@ -1,0 +1,42 @@
+#////////////////////////////////////////////////////#
+# * Makefile for FPIC
+#////////////////////////////////////////////////////#
+
+## Exe file ##
+target=libforecast.a
+
+## Complier and options ##
+FC = ifort
+FLAG = -fPIC -fast -openmp -mkl
+#DBAG = -check all -std -gen_interfaces -fpe0 -ftrapuv -traceback
+FLAGS = $(FLAG) $(DBAG)
+
+## Directories ##
+libroot = ../../../
+MyLib = ${libroot}/mylib
+LAPACK = ${libroot}/LAPACK95
+
+MODD = -I$(LAPACK)/mod -I$(MyLib)/fpicmod
+LIBD = -L$(LAPACK)/lib -L$(MyLib)/fpiclib
+LINK = -lutils -llapack95 -llapack -lrefblas
+
+OPTION = $(MODD) $(LIBD) $(LINK)
+
+OBJ = forecast.o results.o snr.o pca.o
+
+$(target): $(OBJ)
+	ar cr $@ $^
+
+%.o: %.f90
+	$(FC) $(FLAGS) $(OPTION) -c $*.f90
+
+install:
+	mv *.mod ${MyLib}/fpicmod; mv $(target) ${MyLib}/fpiclib/ 
+
+clean:
+	rm -f *.o*
+
+snr.o : forecast.o
+pca.o: forecast.o
+
+
